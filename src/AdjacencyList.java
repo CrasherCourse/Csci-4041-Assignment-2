@@ -1,9 +1,6 @@
 /*
  * AdjacencyList Class
  */
-package Assignment2;
-
-import <ArrayList>
 
 public class AdjacencyList
 {
@@ -18,7 +15,7 @@ public class AdjacencyList
 	
 	int size;
 	Node[] nodeList;			// List of all nodes, mostly for holding nodes
-	ArrayList<Node>[] graph;	// The actualy adjacency list
+//	ArrayList<Node>[] graph;	// The actualy adjacency list
 	
 	AdjacencyList(String fileName)
 	{
