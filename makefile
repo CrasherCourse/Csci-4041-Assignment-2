@@ -1,13 +1,13 @@
 # makefile for Graphtool Java program
-Graphtool.jar: bin/Graphtool.class bin/AdjacencyList.class
-	jar -cfm Graphtool.jar manifest.txt -C bin/ .
+Graphtool.jar: src/Graphtool.class src/AdjacencyList.class
+	jar -cfm Graphtool.jar manifest.txt -C src/ .
 
-bin/Graphtool.class: src/Graphtool.java
-	javac -d bin src/Graphtool.java
+src/Graphtool.class: src/Graphtool.java
+	javac src/Graphtool.java
 
-bin/AdjacencyList.class: src/AdjacencyList.java
-	javac -d bin src/AdjacencyList.java
+src/AdjacencyList.class: src/AdjacencyList.java
+	javac src/AdjacencyList.java
 	
 clean:
 	rm *.jar
-	rm bin/*.class
+	rm src/*.class
