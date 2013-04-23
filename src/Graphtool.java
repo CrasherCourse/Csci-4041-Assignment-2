@@ -12,6 +12,6 @@ public class Graphtool
 		System.out.println("Ready to start coding!");
 		alist = new AdjacencyList("test.txt");
 		System.out.println("Made the list!");
-		System.out.println(alist);
+		alist.adjacentVetexes(1);
 	}
 }

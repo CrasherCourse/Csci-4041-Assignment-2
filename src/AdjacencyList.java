@@ -16,6 +16,7 @@ public class AdjacencyList
 		{
 			key = value;
 		}
+		public int getKey(){  return key; }
 	}
 	
 	int size;					// number of nodes total
@@ -24,29 +25,56 @@ public class AdjacencyList
 	
 	AdjacencyList(String fileName)
 	{	
+		int index;
 		try (Scanner f = new Scanner(new File(fileName)))
 		{
 			if(f.hasNextInt())		// will not work if file is not well defined!
 			{
 				this.size = f.nextInt();
 			}
+			nodeList = new Node[size];
+			adjList = new ArrayList[size];
+		
+			for(int i = 0; i < nodeList.length; i++)
+			{
+				nodeList[i] = new Node(i);
+			}
+			for(int i = 0; i < adjList.length; i++)
+			{
+				adjList[i] = new ArrayList<Node>();
+			}
+			
+			while(f.hasNextInt())
+			{
+				index = f.nextInt();
+				adjList[index].add(nodeList[f.nextInt()]);
+			}
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
 		}
-		nodeList = new Node[size];
-		adjList = new ArrayList[size];
+
 		
-		for(int i = 0; i < nodeList.length; i++)
+	}
+	
+	public void adjacentVetexes(int key)
+	{
+		Node temp;
+		if(key > 0 || key >= size) return;
+		for(int i = 0; i < adjList[i].size(); i++)
 		{
-			nodeList[i] = new Node(i);
+			temp = (Node) adjList[key].get(i);
+			System.out.print(temp.getKey() + " ");
 		}
+	}
+	
+	public void print()
+	{
 		for(int i = 0; i < adjList.length; i++)
 		{
-			adjList[i] = new ArrayList<Node>();
+			//for(int j = 0; j < ad
 		}
-		
 	}
 	
 	@Override public String toString()
