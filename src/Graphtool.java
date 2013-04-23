@@ -13,5 +13,8 @@ public class Graphtool
 		alist = new AdjacencyList("test.txt");
 		System.out.println("Made the list!");
 		alist.adjacentVetexes(0);
+		alist.adjacentVetexes(1);
+		alist.adjacentVetexes(9);
+		alist.adjacentVetexes(20);
 	}
 }

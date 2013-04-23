@@ -59,8 +59,17 @@ public class AdjacencyList
 	
 	public void adjacentVetexes(int key)
 	{
-		if(key > 0 || key >= size) return;
+		if(key < 0 || key >= size)
+		{
+			System.out.format("Node %d does not exist!\n", key);
+			return;
+		}
 		Node[] temp = nodeList[key].adj.toArray(new Node[nodeList[key].adj.size()]);
+		if(temp.length == 0)
+		{
+			System.out.format("Node %d has no adjacent vetexes!\n", key);
+			return;
+		}
 		for(int i = 0; i < temp.length; i++)
 		{
 			System.out.print(temp[i].key + " ");
