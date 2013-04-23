@@ -18,9 +18,9 @@ public class AdjacencyList
 		}
 	}
 	
-	int size;
+	int size;					// number of nodes total
 	Node[] nodeList;			// List of all nodes used for reference disjoint nodes
-	ArrayList[] adjList;	// The actualy adjacency list
+	ArrayList[] adjList;		// The actualy adjacency list
 	
 	AdjacencyList(String fileName)
 	{	
@@ -29,7 +29,6 @@ public class AdjacencyList
 			if(f.hasNextInt())		// will not work if file is not well defined!
 			{
 				this.size = f.nextInt();
-				System.out.println(size);
 			}
 		}
 		catch (IOException e)
@@ -42,7 +41,6 @@ public class AdjacencyList
 		for(int i = 0; i < nodeList.length; i++)
 		{
 			nodeList[i] = new Node(i);
-			System.out.println(nodeList[i].key);
 		}
 		for(int i = 0; i < adjList.length; i++)
 		{
