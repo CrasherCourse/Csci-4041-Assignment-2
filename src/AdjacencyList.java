@@ -12,16 +12,18 @@ public class AdjacencyList
 	private class Node 			// Node class for Adjacency Lists
 	{
 		int key;
+		ArrayList<Node> adj;
 		Node(int value)
 		{
 			key = value;
+			adj = new ArrayList<Node>();
 		}
 		public int getKey(){  return key; }
 	}
 	
 	int size;					// number of nodes total
 	Node[] nodeList;			// List of all nodes used for reference disjoint nodes
-	ArrayList[] adjList;		// The actualy adjacency list
+
 	
 	AdjacencyList(String fileName)
 	{	
@@ -33,21 +35,18 @@ public class AdjacencyList
 				this.size = f.nextInt();
 			}
 			nodeList = new Node[size];
-			adjList = new ArrayList[size];
 		
-			for(int i = 0; i < nodeList.length; i++)
+			for(int i = 0; i < nodeList.length; i++)	// make the list of nodes
 			{
 				nodeList[i] = new Node(i);
 			}
-			for(int i = 0; i < adjList.length; i++)
+
+			while(f.hasNextInt())						// add adjacenies to the list
 			{
-				adjList[i] = new ArrayList<Node>();
-			}
-			
-			while(f.hasNextInt())
-			{
-				index = f.nextInt();
-				adjList[index].add(nodeList[f.nextInt()]);
+				int index1 = f.nextInt();
+				int index2 = f.nextInt();
+				nodeList[index1].adj.add(nodeList[index2]);		// make adjacencies both ways since graph is undirected
+				nodeList[index2].adj.add(nodeList[index1]);				
 			}
 		}
 		catch (IOException e)
@@ -60,21 +59,18 @@ public class AdjacencyList
 	
 	public void adjacentVetexes(int key)
 	{
-		Node temp;
 		if(key > 0 || key >= size) return;
-		for(int i = 0; i < adjList[i].size(); i++)
+		Node[] temp = nodeList[key].adj.toArray(new Node[nodeList[key].adj.size()]);
+		for(int i = 0; i < temp.length; i++)
 		{
-			temp = (Node) adjList[key].get(i);
-			System.out.print(temp.getKey() + " ");
+			System.out.print(temp[i].key + " ");
 		}
+		System.out.println("");
 	}
 	
 	public void print()
 	{
-		for(int i = 0; i < adjList.length; i++)
-		{
-			//for(int j = 0; j < ad
-		}
+
 	}
 	
 	@Override public String toString()
