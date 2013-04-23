@@ -2,11 +2,14 @@
  * AdjacencyList Class
  */
 // imports
-import java.io.BufferedReader;
+import java.util.Scanner;
+import java.io.File;
+import java.util.ArrayList;
+import java.io.IOException;
 // Code
 public class AdjacencyList
 {
-	public class Node 			// Node class for Adjacency Lists
+	private class Node 			// Node class for Adjacency Lists
 	{
 		int key;
 		Node(int value)
@@ -16,18 +19,36 @@ public class AdjacencyList
 	}
 	
 	int size;
-	Node[] nodeList;			// List of all nodes, mostly for holding nodes
-//	ArrayList<Node>[] graph;	// The actualy adjacency list
+	Node[] nodeList;			// List of all nodes used for reference disjoint nodes
+	ArrayList[] adjList;	// The actualy adjacency list
 	
 	AdjacencyList(String fileName)
-	{
-		size = 10;
+	{	
+		try (Scanner f = new Scanner(new File(fileName)))
+		{
+			if(f.hasNextInt())		// will not work if file is not well defined!
+			{
+				this.size = f.nextInt();
+				System.out.println(size);
+			}
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 		nodeList = new Node[size];
+		adjList = new ArrayList[size];
+		
 		for(int i = 0; i < nodeList.length; i++)
 		{
 			nodeList[i] = new Node(i);
 			System.out.println(nodeList[i].key);
 		}
+		for(int i = 0; i < adjList.length; i++)
+		{
+			adjList[i] = new ArrayList<Node>();
+		}
+		
 	}
 	
 	@Override public String toString()

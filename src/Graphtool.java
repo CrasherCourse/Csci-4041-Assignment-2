@@ -10,7 +10,7 @@ public class Graphtool
 		AdjacencyList alist;
 		
 		System.out.println("Ready to start coding!");
-		alist = new AdjacencyList("None");
+		alist = new AdjacencyList("test.txt");
 		System.out.println("Made the list!");
 		System.out.println(alist);
 	}
