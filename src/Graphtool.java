@@ -29,8 +29,9 @@ public class Graphtool
 				{
 					arg[i] = Integer.parseInt(temp[i]);
 				}
-				catch
+				catch (Exception e)
 				{
+					arg[0] = 99;
 				}
 			}
 			
