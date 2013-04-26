@@ -11,12 +11,12 @@ public class AdjacencyList
 {
 	private class Node 			// Node class for Adjacency Lists
 	{
-		int key;
-		ArrayList<Node> adj;
+		int key;				// The key of the node
+		ArrayList<Node> adj;	// Stores a nodes adjacencies
 		Node(int value)
 		{
-			key = value;
-			adj = new ArrayList<Node>();
+			key = value;						
+			adj = new ArrayList<Node>();		
 		}
 		public int getKey(){  return key; }
 	}
@@ -59,7 +59,7 @@ public class AdjacencyList
 	
 	public void adjacentVetexes(int key)
 	{
-		if(key < 0 || key >= size)
+		if(key < 0 || key >= size)			// Make sure node exists
 		{
 			System.out.format("Node %d does not exist!\n", key);
 			return;
