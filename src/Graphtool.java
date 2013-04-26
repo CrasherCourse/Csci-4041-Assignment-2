@@ -9,19 +9,44 @@ public class Graphtool
 	public static void main(String args[])
 	{
 		AdjacencyList alist;
-		int select, arg1, arg2;
-		
-		arg1 = -1;
-		arg2 = -1;
+		String command;
+		String[] temp;
+		int[] arg = new int[3];
 		Scanner input = new Scanner(System.in);
-		System.out.print("> ");
-		select = input.nextInt();
-		if(input.hasNextInt()) {arg1 = input.nextInt(); System.out.format("arg1 is %d\n", arg1);}
-		
-		if(input.hasNextInt()) {arg2 = input.nextInt(); System.out.format("arg2 is %d\n", arg2);}
-		
-		System.out.format("You entered %d\n", select);
-		
+		while(true)
+		{
+			arg[0] = -1;
+			arg[1] = -1;
+			arg[2] = -1;
+
+			System.out.print("> ");
+			command = input.nextLine();
+			temp = command.split(" ");
+			for(int i = 0; i < temp.length && i < arg.length; i++)
+			{
+				System.out.println(temp[i]);
+				try
+				{
+					arg[i] = Integer.parseInt(temp[i]);
+				}
+				catch
+				{
+				}
+			}
+			
+			switch(arg[0])
+			{
+				case 1: 	System.out.format("You entered %d\n", arg[0]);
+							break;
+				case 2:		System.out.format("You entered %d\n", arg[0]);
+							break;
+				case 3:		System.out.format("You entered %d\n", arg[0]);
+							break;
+				case 0:		System.out.println("Goodbye!");
+							System.exit(0);
+				default:	System.out.format("Not a valid option.\n", arg[0]);
+			}
+		}
 		
 	/*
 		System.out.println("Ready to start coding!");
