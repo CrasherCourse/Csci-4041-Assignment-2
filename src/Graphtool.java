@@ -41,7 +41,7 @@ public class Graphtool
 			switch(arg[0])
 			{
 				case 1: 	System.out.format("You entered %d\n", arg[0]);
-							break;
+							System.out.println(alist.isSameSet(arg[1], arg[2]));
 				case 2:		System.out.format("You entered %d\n", arg[0]);
 							break;
 				case 3:		System.out.format("You entered %d\n", arg[0]);

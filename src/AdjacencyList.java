@@ -7,11 +7,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.io.IOException;
 // Code
+
 public class AdjacencyList
 {
+	public enum Color { WHITE, GRAY, BLACK};
 	private class Node 			// Node class for Adjacency Lists
 	{
 		int key;				// The key of the node
+		Color color;
 		ArrayList<Node> adj;	// Stores a nodes adjacencies
 		Node(int value)
 		{
@@ -77,9 +80,30 @@ public class AdjacencyList
 		System.out.println("");
 	}
 	
-	public void print()
+	public boolean isSameSet(int x, int y)
 	{
-
+		for(Node n: nodeList)
+		{
+			n.color = Color.WHITE;		// set all nodes to white
+		}
+		return iSS(x, y);
+	}
+	
+	// Recursive DFS used to determine if two nodes are in the same set
+	private boolean iSS(int x, int y)
+	{
+		boolean retval = false;
+		if(x == y) return true;				// return true if you are the node
+		nodeList[x].color = Color.GRAY;		// Indicate that we have seen this node
+		for(Node n: nodeList)
+		{
+			if(n.color == Color.WHITE && iSS(n.key, y))		// check only nodes that have yet to be checked
+			{
+				return true;
+			}
+		}
+		nodeList[x].color = Color.BLACK;
+		return false;		// no matches were found
 	}
 	
 	@Override public String toString()
