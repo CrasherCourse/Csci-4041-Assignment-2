@@ -13,6 +13,9 @@ public class Graphtool
 		String[] temp;
 		int[] arg = new int[3];
 		Scanner input = new Scanner(System.in);
+		
+		// Create the adjacency list
+		alist = new AdjacencyList("test.txt");
 		while(true)
 		{
 			arg[0] = -1;
@@ -42,6 +45,7 @@ public class Graphtool
 				case 2:		System.out.format("You entered %d\n", arg[0]);
 							break;
 				case 3:		System.out.format("You entered %d\n", arg[0]);
+							if(arg[1] != -1) alist.adjacentVetexes(arg[1]);
 							break;
 				case 0:		System.out.println("Goodbye!");
 							System.exit(0);
@@ -51,7 +55,7 @@ public class Graphtool
 		
 	/*
 		System.out.println("Ready to start coding!");
-		alist = new AdjacencyList("test.txt");
+
 		System.out.println("Made the list!");
 		alist.adjacentVetexes(0);
 		alist.adjacentVetexes(1);
