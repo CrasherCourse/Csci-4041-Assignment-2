@@ -92,10 +92,9 @@ public class AdjacencyList
 	// Recursive DFS used to determine if two nodes are in the same set
 	private boolean iSS(int x, int y)
 	{
-		boolean retval = false;
 		if(x == y) return true;				// return true if you are the node
 		nodeList[x].color = Color.GRAY;		// Indicate that we have seen this node
-		for(Node n: nodeList)
+		for(Node n: nodeList[x].adj)
 		{
 			if(n.color == Color.WHITE && iSS(n.key, y))		// check only nodes that have yet to be checked
 			{

@@ -15,7 +15,7 @@ public class Graphtool
 		Scanner input = new Scanner(System.in);
 		
 		// Create the adjacency list
-		alist = new AdjacencyList("test.txt");
+		alist = new AdjacencyList("sample.input");
 		while(true)
 		{
 			arg[0] = -1;
