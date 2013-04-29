@@ -6,12 +6,13 @@ import java.util.Scanner;
 import java.io.File;
 import java.util.ArrayList;
 import java.io.IOException;
+import java.lang.Comparable;
 // Code
 
 public class AdjacencyList
 {
 	public enum Color { WHITE, GRAY, BLACK};
-	private class Node 			// Node class for Adjacency Lists
+	private class Node implements Comparable<Node>			// Node class for Adjacency Lists
 	{
 		int key;				// The key of the node
 		Color color;
@@ -22,6 +23,14 @@ public class AdjacencyList
 			adj = new ArrayList<Node>();		
 		}
 		public int getKey(){  return key; }
+		@Override
+		public int compareTo(Node other)
+		{
+			int o = other.key;
+			if(o < this.key) return 1;
+			else if(o == this.key) return 0;
+			else return 1;
+		}
 	}
 	
 	int size;					// number of nodes total
@@ -80,6 +89,7 @@ public class AdjacencyList
 		System.out.println("");
 	}
 	
+	// Choice 1: finds out if two nodes are in the same set
 	public boolean isSameSet(int x, int y)
 	{
 		for(Node n: nodeList)
