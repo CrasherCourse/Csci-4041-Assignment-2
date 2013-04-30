@@ -27,7 +27,6 @@ public class Graphtool
 			temp = command.split(" ");
 			for(int i = 0; i < temp.length && i < arg.length; i++)
 			{
-				System.out.println(temp[i]);
 				try
 				{
 					arg[i] = Integer.parseInt(temp[i]);
@@ -43,6 +42,7 @@ public class Graphtool
 				case 1: 	System.out.format("You entered %d\n", arg[0]);
 							System.out.println(alist.isSameSet(arg[1], arg[2]));
 				case 2:		System.out.format("You entered %d\n", arg[0]);
+							alist.printSet(arg[1]);
 							break;
 				case 3:		System.out.format("You entered %d\n", arg[0]);
 							if(arg[1] != -1) alist.adjacentVetexes(arg[1]);

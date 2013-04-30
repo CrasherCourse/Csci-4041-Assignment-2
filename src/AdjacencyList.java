@@ -67,28 +67,7 @@ public class AdjacencyList
 		}
 
 		
-	}
-	
-	public void adjacentVetexes(int key)
-	{
-		if(key < 0 || key >= size)			// Make sure node exists
-		{
-			System.out.format("Node %d does not exist!\n", key);
-			return;
-		}
-		Node[] temp = nodeList[key].adj.toArray(new Node[nodeList[key].adj.size()]);
-		if(temp.length == 0)
-		{
-			System.out.format("Node %d has no adjacent vetexes!\n", key);
-			return;
-		}
-		for(int i = 0; i < temp.length; i++)
-		{
-			System.out.print(temp[i].key + " ");
-		}
-		System.out.println("");
-	}
-	
+	}	
 	// Choice 1: finds out if two nodes are in the same set
 	public boolean isSameSet(int x, int y)
 	{
@@ -113,6 +92,54 @@ public class AdjacencyList
 		}
 		nodeList[x].color = Color.BLACK;
 		return false;		// no matches were found
+	}
+	
+	// Choice 2: Prints out a list of vertexes in the same set in a sorted fashion
+	public void printSet(int key)
+	{
+		ArrayList<Node> q = new ArrayList<Node>();
+		for(Node n: nodeList)
+		{
+			n.color = Color.WHITE;		// set all nodes to white
+		}
+		q.add(nodeList[key]);
+		Node n;
+		int index = 0;
+		while(index < q.size())
+		{
+			n = q.get(index++);
+			n.color = Color.GRAY;
+			for(Node x: n.adj)
+			{
+				if(x.color == Color.WHITE)
+				{
+					q.add(x);
+				}
+			}
+			n.color = Color.BLACK;
+			System.out.println(n.key);
+		}
+	}
+	
+	// Choice 3: prints out adjacent vertexes
+	public void adjacentVetexes(int key)
+	{
+		if(key < 0 || key >= size)			// Make sure node exists
+		{
+			System.out.format("Node %d does not exist!\n", key);
+			return;
+		}
+		Node[] temp = nodeList[key].adj.toArray(new Node[nodeList[key].adj.size()]);
+		if(temp.length == 0)
+		{
+			System.out.format("Node %d has no adjacent vetexes!\n", key);
+			return;
+		}
+		for(int i = 0; i < temp.length; i++)
+		{
+			System.out.print(temp[i].key + " ");
+		}
+		System.out.println("");
 	}
 	
 	@Override public String toString()
