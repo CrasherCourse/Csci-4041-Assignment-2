@@ -22,25 +22,26 @@ public class Graphtool
 			arg[1] = -1;
 			arg[2] = -1;
 
-			System.out.print("> ");
+			System.out.print("> ");			// Get the user's input from cmd line
 			command = input.nextLine();
 			temp = command.split(" ");
-			for(int i = 0; i < temp.length && i < arg.length; i++)
+			for(int i = 0; i < temp.length && i < arg.length; i++)		// convert input into ints
 			{
 				try
 				{
 					arg[i] = Integer.parseInt(temp[i]);
 				}
-				catch (Exception e)
+				catch (Exception e)			// if there are any invalid inputs, use to default handler
 				{
 					arg[0] = 99;
 				}
 			}
 			
-			switch(arg[0])
+			switch(arg[0])	// Where we determine which choice to execute
 			{
 				case 1: 	System.out.format("You entered %d\n", arg[0]);
 							System.out.println(alist.isSameSet(arg[1], arg[2]));
+							break;
 				case 2:		System.out.format("You entered %d\n", arg[0]);
 							alist.printSet(arg[1]);
 							break;
@@ -52,15 +53,5 @@ public class Graphtool
 				default:	System.out.format("Not a valid option.\n", arg[0]);
 			}
 		}
-		
-	/*
-		System.out.println("Ready to start coding!");
-
-		System.out.println("Made the list!");
-		alist.adjacentVetexes(0);
-		alist.adjacentVetexes(1);
-		alist.adjacentVetexes(9);
-		alist.adjacentVetexes(20);
-	*/
 	}
 }

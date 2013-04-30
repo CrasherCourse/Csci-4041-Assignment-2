@@ -61,13 +61,19 @@ public class AdjacencyList
 				nodeList[index2].adj.add(nodeList[index1]);				
 			}
 		}
-		catch (IOException e)
+		catch (IOException e)		// Quit the program if the input text is non-existent
 		{
 			e.printStackTrace();
 		}
 
 		
 	}	
+	// check if key is vaild
+	public boolean isValidKey(int key)
+	{
+		return (key >= 0 && key < this.size);
+	}
+// ------------------------------------------------------------------------------------------------
 	// Choice 1: finds out if two nodes are in the same set
 	public boolean isSameSet(int x, int y)
 	{
@@ -93,7 +99,7 @@ public class AdjacencyList
 		nodeList[x].color = Color.BLACK;
 		return false;		// no matches were found
 	}
-	
+// ------------------------------------------------------------------------------------------------
 	// Choice 2: Prints out a list of vertexes in the same set in a sorted fashion
 	public void printSet(int key)
 	{
@@ -102,25 +108,30 @@ public class AdjacencyList
 		{
 			n.color = Color.WHITE;		// set all nodes to white
 		}
-		q.add(nodeList[key]);
+		q.add(nodeList[key]);				// add the first node to the queue
+		nodeList[key].color = Color.GRAY;
 		Node n;
 		int index = 0;
 		while(index < q.size())
 		{
 			n = q.get(index++);
-			n.color = Color.GRAY;
-			for(Node x: n.adj)
+			for(Node x: n.adj)				// Used BFS to eliminate the need of recursion
 			{
 				if(x.color == Color.WHITE)
 				{
 					q.add(x);
+					n.color = Color.GRAY;
 				}
 			}
 			n.color = Color.BLACK;
-			System.out.println(n.key);
+		}
+		
+		for(Node x: q)
+		{
+			System.out.println(x.key);
 		}
 	}
-	
+// ------------------------------------------------------------------------------------------------
 	// Choice 3: prints out adjacent vertexes
 	public void adjacentVetexes(int key)
 	{
@@ -141,7 +152,7 @@ public class AdjacencyList
 		}
 		System.out.println("");
 	}
-	
+// ------------------------------------------------------------------------------------------------
 	@Override public String toString()
 	{
 		String retval;
