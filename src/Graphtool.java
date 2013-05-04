@@ -40,13 +40,13 @@ public class Graphtool
 			switch(arg[0])	// Where we determine which choice to execute
 			{
 				case 1: 	System.out.format("You entered %d\n", arg[0]);
-							System.out.println(alist.isSameSet(arg[1], arg[2]));
+							alist.isSameSet(arg[1], arg[2]);
 							break;
 				case 2:		System.out.format("You entered %d\n", arg[0]);
 							alist.printSet(arg[1]);
 							break;
 				case 3:		System.out.format("You entered %d\n", arg[0]);
-							if(arg[1] != -1) alist.adjacentVetexes(arg[1]);
+							alist.adjacentVetexes(arg[1]);
 							break;
 				case 0:		System.out.println("Goodbye!");
 							System.exit(0);

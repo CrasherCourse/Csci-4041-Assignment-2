@@ -68,20 +68,32 @@ public class AdjacencyList
 
 		
 	}
-	// check if key is vaild
-	public boolean isValidKey(int key)
+	// check if key is vaild, sends appropriate response if not
+	public boolean invalidKey(int key)
 	{
-		return (key >= 0 && key < this.size);
+		if(key == -1)
+		{
+			System.out.println("Not enough arguments");
+			return true;
+		}
+		if(key < 0 || key >= this.size)
+		{
+			System.out.printf("Node %d does not exist\n", key);
+			return true;
+		}
+		return false;
 	}
 // ------------------------------------------------------------------------------------------------
 	// Choice 1: finds out if two nodes are in the same set
-	public boolean isSameSet(int x, int y)
+	public void isSameSet(int x, int y)
 	{
+		if(invalidKey(x) || invalidKey(y)) return;
 		for(Node n: nodeList)
 		{
 			n.color = Color.WHITE;		// set all nodes to white
 		}
-		return iSS(x, y);
+		System.out.println(iSS(x, y));
+		return;
 	}
 	
 	// Recursive DFS used to determine if two nodes are in the same set
@@ -103,6 +115,7 @@ public class AdjacencyList
 	// Choice 2: Prints out a list of vertexes in the same set in a sorted fashion
 	public void printSet(int key)
 	{
+		if(invalidKey(key)) return;
 		ArrayList<Node> q = new ArrayList<Node>();
 		for(Node n: nodeList)
 		{
@@ -136,11 +149,7 @@ public class AdjacencyList
 	// Choice 3: prints out adjacent vertexes
 	public void adjacentVetexes(int key)
 	{
-		if(key < 0 || key >= size)			// Make sure node exists
-		{
-			System.out.format("Node %d does not exist!\n", key);
-			return;
-		}
+		if(invalidKey(key)) return;
 		Node temp = nodeList[key];
 		System.out.printf("%d ", key);
 		Collections.sort(temp.adj);
