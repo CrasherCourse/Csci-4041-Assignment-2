@@ -67,7 +67,7 @@ public class AdjacencyList
 		}
 
 		
-	}	
+	}
 	// check if key is vaild
 	public boolean isValidKey(int key)
 	{
@@ -108,28 +108,27 @@ public class AdjacencyList
 		{
 			n.color = Color.WHITE;		// set all nodes to white
 		}
-		q.add(nodeList[key]);				// add the first node to the queue
-		nodeList[key].color = Color.GRAY;
-		Node n;
-		int index = 0;
-		while(index < q.size())
-		{
-			n = q.get(index++);
-			for(Node x: n.adj)				// Used BFS to eliminate the need of recursion
-			{
-				if(x.color == Color.WHITE)
-				{
-					q.add(x);
-					n.color = Color.GRAY;
-				}
-			}
-			n.color = Color.BLACK;
-		}
-		
+
+		q = getSet(nodeList[key]);
 		for(Node x: q)
 		{
 			System.out.println(x.key);
 		}
+	}
+	
+	private ArrayList<Node> getSet(Node node)
+	{
+		ArrayList<Node> retval = new ArrayList<Node>();
+		retval.add(node);
+		node.color = Color.GRAY;
+		for(Node n: node.adj)
+		{
+			if(n.color == Color.WHITE)
+			{
+				retval.addAll(getSet(n));
+			}
+		}
+		return retval;
 	}
 // ------------------------------------------------------------------------------------------------
 	// Choice 3: prints out adjacent vertexes
