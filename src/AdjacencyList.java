@@ -7,6 +7,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.io.IOException;
 import java.lang.Comparable;
+import java.util.Collections;
 // Code
 
 public class AdjacencyList
@@ -26,9 +27,8 @@ public class AdjacencyList
 		@Override
 		public int compareTo(Node other)
 		{
-			int o = other.key;
-			if(o < this.key) return 1;
-			else if(o == this.key) return 0;
+			if(this.key < other.key) return -1;
+			else if(other.key == this.key) return 0;
 			else return 1;
 		}
 	}
@@ -108,14 +108,16 @@ public class AdjacencyList
 		{
 			n.color = Color.WHITE;		// set all nodes to white
 		}
-
 		q = getSet(nodeList[key]);
+		Collections.sort(q);
 		for(Node x: q)
 		{
-			System.out.println(x.key);
+			System.out.printf("%s ",x.key);
 		}
+		System.out.println("");
 	}
 	
+	// reusively gets a list of all currently white nodes
 	private ArrayList<Node> getSet(Node node)
 	{
 		ArrayList<Node> retval = new ArrayList<Node>();
@@ -139,15 +141,12 @@ public class AdjacencyList
 			System.out.format("Node %d does not exist!\n", key);
 			return;
 		}
-		Node[] temp = nodeList[key].adj.toArray(new Node[nodeList[key].adj.size()]);
-		if(temp.length == 0)
+		Node temp = nodeList[key];
+		System.out.printf("%d ", key);
+		Collections.sort(temp.adj);
+		for(Node n: temp.adj)
 		{
-			System.out.format("Node %d has no adjacent vetexes!\n", key);
-			return;
-		}
-		for(int i = 0; i < temp.length; i++)
-		{
-			System.out.print(temp[i].key + " ");
+			System.out.printf("%d ", n.key);
 		}
 		System.out.println("");
 	}
