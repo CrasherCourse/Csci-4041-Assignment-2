@@ -13,9 +13,13 @@ public class Graphtool
 		String[] temp;
 		int[] arg = new int[3];
 		Scanner input = new Scanner(System.in);
-		
+		if(args.length != 1)
+		{
+			System.out.println("Usage: Graphtool filename");
+			System.exit(0);
+		}
 		// Create the adjacency list
-		alist = new AdjacencyList("sample.input");
+		alist = new AdjacencyList(args[0]);
 		while(true)
 		{
 			arg[0] = -1;

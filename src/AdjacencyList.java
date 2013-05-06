@@ -160,11 +160,4 @@ public class AdjacencyList
 		System.out.println("");
 	}
 // ------------------------------------------------------------------------------------------------
-	@Override public String toString()
-	{
-		String retval;
-		retval = "This is an adjaceny list!";
-		return retval;
-	}
-	
 }
