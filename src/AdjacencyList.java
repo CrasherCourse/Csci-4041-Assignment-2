@@ -23,7 +23,7 @@ public class AdjacencyList
 			key = value;						
 			adj = new ArrayList<Node>();		
 		}
-		public int getKey(){  return key; }
+		public int getKey(){  return key; }		// get node's key
 		@Override
 		public int compareTo(Node other)		// for sorting
 		{
@@ -68,15 +68,16 @@ public class AdjacencyList
 
 		
 	}
+	
 	// check if key is vaild, sends appropriate response if not
 	public boolean invalidKey(int key)
 	{
-		if(key == -1)
+		if(key == -1)	// -1 means no number argument was given
 		{
 			System.out.println("Not enough arguments");
 			return true;
 		}
-		if(key < 0 || key >= this.size)
+		if(key < 0 || key >= this.size)		// keys should range from 0 to size -1
 		{
 			System.out.printf("Node %d does not exist\n", key);
 			return true;
@@ -92,7 +93,7 @@ public class AdjacencyList
 		{
 			n.color = Color.WHITE;		// set all nodes to white
 		}
-		System.out.println(iSS(x, y));
+		System.out.println(iSS(x, y));	// print out true/false
 		return;
 	}
 	
@@ -138,11 +139,11 @@ public class AdjacencyList
 		ArrayList<Node> retval = new ArrayList<Node>();
 		retval.add(node);
 		node.color = Color.GRAY;
-		for(Node n: node.adj)
+		for(Node n: node.adj)				// check all adjacent nodes
 		{
 			if(n.color == Color.WHITE)
 			{
-				retval.addAll(getSet(n));
+				retval.addAll(getSet(n));	// adds all connecting nodes for a nearby WHITE node
 			}
 		}
 		return retval;
@@ -151,11 +152,11 @@ public class AdjacencyList
 	// Choice 3: prints out adjacent vertexes
 	public void adjacentVetexes(int key)
 	{
-		if(invalidKey(key)) return;
-		Node temp = nodeList[key];
-		System.out.printf("%d ", key);
-		Collections.sort(temp.adj);
-		for(Node n: temp.adj)
+		if(invalidKey(key)) return;			// Check if key is valid
+		Node temp = nodeList[key];			
+		System.out.printf("%d ", key);		// Print the user selected Node
+		Collections.sort(temp.adj);			// Sort node's adjacency list
+		for(Node n: temp.adj)				// print out adjacency list
 		{
 			System.out.printf("%d ", n.key);
 		}

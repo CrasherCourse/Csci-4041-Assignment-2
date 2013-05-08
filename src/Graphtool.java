@@ -13,16 +13,17 @@ public class Graphtool
 		String[] temp;
 		int[] arg = new int[3];
 		Scanner input = new Scanner(System.in);
-		if(args.length != 1)
+		
+		if(args.length != 1)	// check if Graphtool is properly called
 		{
 			System.out.println("Usage: Graphtool filename");
 			System.exit(0);
 		}
 		// Create the adjacency list
 		alist = new AdjacencyList(args[0]);
-		while(true)
+		while(true)							// continuously get commands from the user
 		{
-			arg[0] = -1;
+			arg[0] = -1;					// reset arguments
 			arg[1] = -1;
 			arg[2] = -1;
 
@@ -42,17 +43,13 @@ public class Graphtool
 			}
 			switch(arg[0])	// Where we determine which choice to execute
 			{
-				case 1: 	System.out.format("You entered %d\n", arg[0]);
-							alist.isSameSet(arg[1], arg[2]);
+				case 1:		alist.isSameSet(arg[1], arg[2]);
 							break;
-				case 2:		System.out.format("You entered %d\n", arg[0]);
-							alist.printSet(arg[1]);
+				case 2:		alist.printSet(arg[1]);
 							break;
-				case 3:		System.out.format("You entered %d\n", arg[0]);
-							alist.adjacentVetexes(arg[1]);
+				case 3:		alist.adjacentVetexes(arg[1]);
 							break;
-				case 0:		System.out.println("Goodbye!");
-							System.exit(0);
+				case 0:		System.exit(0);
 				default:	System.out.format("Not a valid option.\n", arg[0]);
 			}
 		}
