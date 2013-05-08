@@ -25,7 +25,7 @@ public class AdjacencyList
 		}
 		public int getKey(){  return key; }		// get node's key
 		@Override
-		public int compareTo(Node other)		// for sorting
+		public int compareTo(Node other)		// for sorting lists
 		{
 			if(this.key < other.key) return -1;
 			else if(other.key == this.key) return 0;
@@ -40,8 +40,9 @@ public class AdjacencyList
 	AdjacencyList(String fileName)
 	{	
 		int index;
-		try (Scanner f = new Scanner(new File(fileName)))
+		try 
 		{
+			Scanner f = new Scanner(new File(fileName));
 			if(f.hasNextInt())		// will not work if file is not well defined!
 			{
 				this.size = f.nextInt();
@@ -64,6 +65,7 @@ public class AdjacencyList
 		catch (IOException e)		// Quit the program if the input text is non-existent
 		{
 			e.printStackTrace();
+			System.exit(0);
 		}
 
 		
