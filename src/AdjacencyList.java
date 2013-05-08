@@ -12,20 +12,20 @@ import java.util.Collections;
 
 public class AdjacencyList
 {
-	public enum Color { WHITE, GRAY, BLACK};
+	public enum Color { WHITE, GRAY, BLACK};				// Colors to true emulate DFS
 	private class Node implements Comparable<Node>			// Node class for Adjacency Lists
 	{
 		int key;				// The key of the node
-		Color color;
+		Color color;			// Node color
 		ArrayList<Node> adj;	// Stores a nodes adjacencies
-		Node(int value)
+		Node(int value)			// Constructor
 		{
 			key = value;						
 			adj = new ArrayList<Node>();		
 		}
 		public int getKey(){  return key; }
 		@Override
-		public int compareTo(Node other)
+		public int compareTo(Node other)		// for sorting
 		{
 			if(this.key < other.key) return -1;
 			else if(other.key == this.key) return 0;
@@ -121,16 +121,18 @@ public class AdjacencyList
 		{
 			n.color = Color.WHITE;		// set all nodes to white
 		}
-		q = getSet(nodeList[key]);
-		Collections.sort(q);
-		for(Node x: q)
+		q = getSet(nodeList[key]);		// Make a set of all connected nodes
+		q.remove(nodeList[key]);			// Remove key node from set
+		Collections.sort(q);			// Sort the list of nodes
+		System.out.printf("%s ", key);	// Print out the starting key
+		for(Node x: q)					// Print out the rest in ascending order
 		{
 			System.out.printf("%s ",x.key);
 		}
-		System.out.println("");
+		System.out.println("");			// Make a new Line
 	}
 	
-	// reusively gets a list of all currently white nodes
+	// reusive DFS gets a list of all currently white nodes
 	private ArrayList<Node> getSet(Node node)
 	{
 		ArrayList<Node> retval = new ArrayList<Node>();
