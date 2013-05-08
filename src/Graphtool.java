@@ -40,7 +40,6 @@ public class Graphtool
 					arg[0] = 99;
 				}
 			}
-			
 			switch(arg[0])	// Where we determine which choice to execute
 			{
 				case 1: 	System.out.format("You entered %d\n", arg[0]);
